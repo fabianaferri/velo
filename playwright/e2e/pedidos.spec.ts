@@ -14,16 +14,20 @@ test('consultar pediddo aprovado', async ({ page }) => {
  
   //ACT
   //preenche o campo de busca com o numero do pedido
-  await page.getByTestId('search-order-id').fill('VLO-TMMLH1');
-  await page.getByTestId('search-order-button').click();
+  //await page.locator('//label[text()="Número do Pedido"]/..//input').fill('VLO-TMMLH1'); //criando localizador com xpath
+  
+  await page.getByRole('textbox', { name: 'Número do Pedido' }).fill('VLO-TMMLH1');
+
+  await page.getByRole('button', { name: 'Buscar Pedido' }).click();
 
 
   //ASSERT
-  await expect(page.getByTestId('order-result-id')).toBeVisible();
-  await expect(page.getByTestId('order-result-id')).toContainText('VLO-TMMLH1');
 
-  await expect(page.getByTestId('order-result-status')).toBeVisible();
-  await expect(page.getByTestId('order-result-status')).toContainText('APROVADO');
+  await expect(page.getByText('VLO-TMMLH1')).toBeVisible({timeout: 10000});
+  await expect(page.getByTestId('order-result-VLO-TMMLH1')).toContainText('VLO-TMMLH1');
+
+  await expect(page.getByText('APROVADO')).toBeVisible();
+  await expect(page.getByTestId('order-result-VLO-TMMLH1')).toContainText('APROVADO');
 
 
 });
