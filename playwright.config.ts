@@ -38,7 +38,7 @@ expect: {
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'on',
     
     actionTimeout: 5_000, //tempo maximo para actions(click, fill, etc) que por padrao vem zerado quando valor é zero herda o timeout do teste.
 
