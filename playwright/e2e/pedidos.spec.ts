@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-
+import { generateOrderCode } from '../support/helpers';
 /// AAA - Arrange, Act, Assert
 
 test('Deve consultar pedido aprovado', async ({ page }) => {
@@ -38,7 +38,8 @@ test('Deve consultar pedido aprovado', async ({ page }) => {
 
 test('Deve exibir mensagem quando o pedido não é encontrado', async ({ page }) => {
 
-  const order = 'VLO-ABC123'
+  //const order = 'VLO-ABC123'
+  const order = generateOrderCode()
 
   await page.goto('http://localhost:5173/');
   await expect(page.getByTestId('hero-section').getByRole('heading')).toContainText('Velô Sprint');
